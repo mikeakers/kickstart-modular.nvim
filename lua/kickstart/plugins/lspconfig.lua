@@ -209,10 +209,10 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -270,6 +270,21 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+
+      require('lspconfig').sourcekit.setup {
+        capabilities = capabilities,
+        --on_attach = on_attach,
+        cmd = {
+          '/Applications/Xcode-15.4.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
+        },
+        root_dir = function(filename, _)
+          local util = require 'lspconfig.util'
+          return util.root_pattern 'buildServer.json'(filename)
+            or util.root_pattern('*.xcodeproj', '*.xcworkspace')(filename)
+            or util.find_git_ancestor(filename)
+            or util.root_pattern 'Package.swift'(filename)
+        end,
       }
     end,
   },
