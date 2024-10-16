@@ -1,4 +1,9 @@
 -- LSP Plugins
+
+local function xcode_path()
+  return vim.fn.system('xcode-select -p'):gsub('\n$', '')
+end
+
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -276,7 +281,7 @@ return {
         capabilities = capabilities,
         --on_attach = on_attach,
         cmd = {
-          '/Applications/Xcode-15.4.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
+          xcode_path() .. '/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
         },
         root_dir = function(filename, _)
           local util = require 'lspconfig.util'
