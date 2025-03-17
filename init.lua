@@ -106,5 +106,13 @@ require 'lazy-plugins'
 
 require 'custom/harpoon-options'
 
+vim.keymap.set('n', '<leader>xr', function()
+  vim.fn.system [[osascript -e 'tell application "Xcode"' -e 'activate' -e 'tell application "System Events"' -e 'keystroke "r" using {command down}' -e 'end tell' -e 'end tell']]
+end, { desc = 'Build and run in Xcode' })
+
+vim.keymap.set('n', '<leader>xb', function()
+  vim.fn.system [[osascript -e 'tell application "Xcode"' -e 'activate' -e 'tell application "System Events"' -e 'keystroke "b" using {command down}' -e 'end tell' -e 'end tell']]
+end, { desc = 'Build and run in Xcode' })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
