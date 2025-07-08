@@ -174,17 +174,17 @@ vim.keymap.set('n', '<leader>tt', toggle_theme, { noremap = true, silent = true 
 
 vim.keymap.set('n', '<leader>xr', function()
   vim.fn.system [[osascript -e 'tell application "Xcode"' -e 'activate' -e 'tell application "System Events"' -e 'keystroke "r" using {command down}' -e 'end tell' -e 'end tell']]
-end, { desc = 'Build and run in Xcode' })
+end, { desc = 'Build and [R]un in Xcode' })
 
 vim.keymap.set('n', '<leader>xb', function()
   vim.fn.system [[osascript -e 'tell application "Xcode"' -e 'activate' -e 'tell application "System Events"' -e 'keystroke "b" using {command down}' -e 'end tell' -e 'end tell']]
-end, { desc = 'Build in Xcode' })
+end, { desc = '[B]uild in Xcode' })
 
 vim.keymap.set('n', '<leader>xo', function()
   local dev_path = vim.fn.system 'xcode-select -p'
   local xcode_path = dev_path:match '(.+%.app)'
   vim.fn.system([[open -a ]] .. xcode_path .. [[ ]] .. vim.api.nvim_buf_get_name(0))
-end, { desc = 'Open file in Xcode' })
+end, { desc = '[O]pen file in Xcode' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
