@@ -280,7 +280,7 @@ return {
         capabilities = capabilities,
         --on_attach = on_attach,
         cmd = {
-          xcode_path() .. '/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
+          xcode_path() .. '/usr/bin/sourcekit-lsp',
         },
         root_dir = function(filename, _)
           local util = require 'lspconfig.util'
