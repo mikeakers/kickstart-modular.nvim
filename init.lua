@@ -186,5 +186,7 @@ vim.keymap.set('n', '<leader>xo', function()
   vim.fn.system([[open -a ]] .. xcode_path .. [[ ]] .. vim.api.nvim_buf_get_name(0))
 end, { desc = '[O]pen file in Xcode' })
 
+vim.lsp.enable 'sourcekit'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
