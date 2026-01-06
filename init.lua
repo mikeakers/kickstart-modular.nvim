@@ -181,9 +181,7 @@ vim.keymap.set('n', '<leader>xb', function()
 end, { desc = '[B]uild in Xcode' })
 
 vim.keymap.set('n', '<leader>xo', function()
-  local dev_path = vim.fn.system 'xcode-select -p'
-  local xcode_path = dev_path:match '(.+%.app)'
-  vim.fn.system([[open -a ]] .. xcode_path .. [[ ]] .. vim.api.nvim_buf_get_name(0))
+  vim.fn.system([[xed -l ]] .. vim.api.nvim_win_get_cursor(0)[1] .. [[ ]] .. vim.api.nvim_buf_get_name(0))
 end, { desc = '[O]pen file in Xcode' })
 
 vim.lsp.enable 'sourcekit'
